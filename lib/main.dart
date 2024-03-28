@@ -70,9 +70,7 @@ class _PrincipalViewState extends State<PrincipalView> {
                     return 'Informe o email cadastrado';
                   } else if (value.isEmpty) {
                     return 'Informe o email cadastrado';
-                  } else if (double.tryParse(value) == null) {
-                    return 'Informe o email cadastrado';
-                  }
+                  } 
                   //Retornar null significa que o campo
                   //foi validado com sucesso!
                   return null;
@@ -95,8 +93,6 @@ class _PrincipalViewState extends State<PrincipalView> {
                   if (value == null) {
                     return 'Informe a senha';
                   } else if (value.isEmpty) {
-                    return 'Informe a senha';
-                  } else if (double.tryParse(value) == null) {
                     return 'Informe a senha';
                   }
 
