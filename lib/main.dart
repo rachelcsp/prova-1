@@ -3,6 +3,7 @@ import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 
 import 'Login.dart';
+import 'tela01.dart';
 
 void main() {
   runApp(
@@ -21,7 +22,11 @@ class MainApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Meu App',
-      home: PrincipalView(),
+      initialRoute: 'principal',
+      routes: {
+        'principal' : (context)  => PrincipalView(),
+        't1' : (context)  => TelaInicial(),
+      },
     );
   }
 }

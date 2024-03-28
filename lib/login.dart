@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 
 class PrincipalView extends StatefulWidget {
@@ -95,29 +97,13 @@ class _PrincipalViewState extends State<PrincipalView> {
                   // Chamar os VALIDADORES
                   //
                   if (formKey.currentState!.validate()) {
-                    //Os campos foram validados com sucesso!
+                      //
+                      // Navegar para Tela Inicial
+                      //
+                     Navigator.pushNamed(context, 't1');
 
-                    //
-                    // RECUPERAR as informações dos campos de texto
-                    //
-                    setState(() {
-                      //Retornar o conteúdo do campo Valor 1
-                      double v1 = double.parse(txtValor1.text);
-                      //Retornar o conteúdo do campo Valor 2
-                      double v2 = double.parse(txtValor2.text);
-                      double resultado = v1 + v2;
-
-                      //Exibir o resultado
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text('Resultado: $resultado'),
-                          duration: Duration(seconds: 3),
-                        ),
-                      );
-
-                    });
-                  }
-                },
+                    }
+                  },
                 child: Text(
                   'LOGIN',
                   style: TextStyle(fontSize: 28),
