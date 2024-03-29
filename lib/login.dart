@@ -93,7 +93,37 @@ class _PrincipalViewState extends State<PrincipalView> {
                     context: context,
                     builder: (BuildContext context) => AlertDialog(
                     title: const Text('Esqueci a senha'),
-                    content: const Text('Informe o email cadastrado:'),
+                    content:  SizedBox(
+                      height: 50,
+                      child: Column(
+                      children: [
+                        //
+                        // CAMPO DE TEXTO
+                        //
+                        TextFormField(
+                          controller: txtValor1,
+                          style: TextStyle(fontSize: 10),
+                          decoration: InputDecoration(
+                            labelText: 'informe o email',
+                          border: OutlineInputBorder(),
+                            ),
+                        //
+                        // Validação
+                        //
+                          validator: (value) {
+                            if (value == null) {
+                              return 'Informe o email cadastrado';
+                            } else if (value.isEmpty) {
+                              return 'Informe o email cadastrado';
+                            } 
+                            //Retornar null significa que o campo
+                            //foi validado com sucesso!
+                              return null;
+                            },
+                          ), 
+                        ],
+                      ),
+                    ),
                     actions: [
                       TextButton(
                         onPressed: () => Navigator.pop(context, 'Cancel'),
