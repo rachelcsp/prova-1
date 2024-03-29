@@ -20,6 +20,7 @@ class _PrincipalViewState extends State<PrincipalView> {
   //Controladores dos campos de texto
   var txtValor1 = TextEditingController();
   var txtValor2 = TextEditingController();
+  var txtValor3 = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -101,7 +102,7 @@ class _PrincipalViewState extends State<PrincipalView> {
                         // CAMPO DE TEXTO
                         //
                         TextFormField(
-                          controller: txtValor1,
+                          controller: txtValor3,
                           style: TextStyle(fontSize: 10),
                           decoration: InputDecoration(
                             labelText: 'informe o email',
