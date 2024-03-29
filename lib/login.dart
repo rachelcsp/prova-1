@@ -83,6 +83,31 @@ class _PrincipalViewState extends State<PrincipalView> {
               SizedBox(height: 30),
 
               //
+              //Caixa de Texto "Esqueci a senha"
+              //
+
+              TextButton(
+                onPressed: () => showDialog(
+                context: context,
+                builder: (BuildContext context) => AlertDialog(
+                title: const Text('Esqueci a senha'),
+                content: const Text('Informe o email cadastrado:'),
+                actions: [
+                  TextButton(
+                    onPressed: () => Navigator.pop(context, 'Cancel'),
+                      child: const Text('Cancel'),
+                  ),
+                  TextButton(
+                    onPressed: () => Navigator.pop(context, 'OK'),
+                      child: const Text('OK'),
+                  ),
+                ],
+                ),
+                ),
+                child: const Text('Esqueci a senha'),
+              ),
+
+              //
               // BOTÃO
               //
               //ElevatedButton, OutlinedButton, TextButton
