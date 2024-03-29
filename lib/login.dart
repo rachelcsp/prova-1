@@ -49,7 +49,7 @@ class _PrincipalViewState extends State<PrincipalView> {
                     return 'Informe o email cadastrado';
                   } else if (value.isEmpty) {
                     return 'Informe o email cadastrado';
-                  } 
+                  }
                   //Retornar null significa que o campo
                   //foi validado com sucesso!
                   return null;
@@ -85,57 +85,57 @@ class _PrincipalViewState extends State<PrincipalView> {
               //Caixa de Texto "Esqueci a senha"
               //
 
-              SizedBox(height: 10,),
+              SizedBox(
+                height: 10,
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   TextButton(
                     onPressed: () => showDialog(
-                    context: context,
-                    builder: (BuildContext context) => AlertDialog(
-                    title: const Text('Esqueci a senha'),
-                    content:  SizedBox(
-                      height: 50,
-                      child: Column(
-                      children: [
-                        //
-                        // CAMPO DE TEXTO
-                        //
-                        TextFormField(
-                          controller: txtValor3,
-                          style: TextStyle(fontSize: 10),
-                          decoration: InputDecoration(
-                            labelText: 'informe o email',
-                          border: OutlineInputBorder(),
-                            ),
-                        //
-                        // Validação
-                        //
-                          validator: (value) {
-                            if (value == null) {
-                              return 'Informe o email cadastrado';
-                            } else if (value.isEmpty) {
-                              return 'Informe o email cadastrado';
-                            } 
-                            //Retornar null significa que o campo
-                            //foi validado com sucesso!
-                              return null;
+                      context: context,
+                      builder: (BuildContext context) => AlertDialog(
+                        title: const Text('Esqueci a senha'),
+                        content: SizedBox(
+                          height: 50,
+                          child: Column(
+                            children: [
+                              //
+                              // CAMPO DE TEXTO
+                              //
+                              TextFormField(
+                                controller: txtValor3,
+                                style: TextStyle(fontSize: 10),
+                                decoration: InputDecoration(
+                                  labelText: 'informe o email',
+                                  border: OutlineInputBorder(),
+                                ),
+         
+                              ),
+                            ],
+                          ),
+                        ),
+                        actions: [
+                          TextButton(
+                            onPressed: () => Navigator.pop(context, 'Cancel'),
+                            child: const Text('Cancel'),
+                          ),
+                          TextButton(
+                            onPressed: () {
+                              Navigator.pop(context, 'OK');
+
+                              final snackBar = SnackBar(
+                                content: Text('link para redefinir senha enviado'),
+                                duration: Duration(seconds: 3),
+                              );
+                              // Exibe o Snackbar na tela
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(snackBar);
                             },
-                          ), 
+                            child: const Text('OK'),
+                          ),
                         ],
                       ),
-                    ),
-                    actions: [
-                      TextButton(
-                        onPressed: () => Navigator.pop(context, 'Cancel'),
-                          child: const Text('Cancel'),
-                      ),
-                      TextButton(
-                        onPressed: () => Navigator.pop(context, 'OK'),
-                          child: const Text('OK'),
-                      ),
-                    ],
-                    ),
                     ),
                     child: const Text('Esqueci a senha'),
                   ),
@@ -146,7 +146,9 @@ class _PrincipalViewState extends State<PrincipalView> {
               // BOTÃO
               //
               //ElevatedButton, OutlinedButton, TextButton
-              SizedBox(height: 50,),
+              SizedBox(
+                height: 50,
+              ),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Color.fromARGB(255, 25, 5, 241),
@@ -158,41 +160,37 @@ class _PrincipalViewState extends State<PrincipalView> {
                   // Chamar os VALIDADORES
                   //
                   if (formKey.currentState!.validate()) {
-                      //
-                      // Navegar para Tela Inicial
-                      //
-                     Navigator.pushNamed(context, 't1');
-
-                    }
-                  },
+                    //
+                    // Navegar para Tela Inicial
+                    //
+                    Navigator.pushNamed(context, 't1');
+                  }
+                },
                 child: Text(
                   'LOGIN',
                   style: TextStyle(fontSize: 28),
-
-                
                 ),
-                
-                
               ),
 
               //
               //Caixa de Texto "Esqueci a senha"
               //
-              SizedBox(height: 290,),
+              SizedBox(
+                height: 290,
+              ),
               TextButton(
                 onPressed: () => showDialog(
-                context: context,
-                builder: (BuildContext context) => AlertDialog(
-                title: const Text('Sobre nós'),
-                content: const Text('Nós....'),
-                actions: [
-                  TextButton(
-                    onPressed: () => Navigator.pop(context, 'Sair'),
-                      child: const Text('Sair'),
+                  context: context,
+                  builder: (BuildContext context) => AlertDialog(
+                    title: const Text('Sobre nós'),
+                    content: const Text('Nós....'),
+                    actions: [
+                      TextButton(
+                        onPressed: () => Navigator.pop(context, 'Sair'),
+                        child: const Text('Sair'),
+                      ),
+                    ],
                   ),
-                  
-                ],
-                ),
                 ),
                 child: const Text('Sobre nós'),
               ),
