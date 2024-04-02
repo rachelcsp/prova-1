@@ -25,8 +25,11 @@ class _PrincipalViewState extends State<PrincipalView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text('Login'),
+      ),
       body: Padding(
-        padding: EdgeInsets.fromLTRB(50, 100, 50, 100),
+        padding: EdgeInsets.fromLTRB(50, 90, 50, 90),
         child: Form(
           key: formKey,
           child: Column(
@@ -191,7 +194,7 @@ class _PrincipalViewState extends State<PrincipalView> {
               //Caixa de Texto "Sobre nós"
               //
               SizedBox(
-                height: 248,
+                height: 150,
               ),
               TextButton(
                 onPressed: () => showDialog(
