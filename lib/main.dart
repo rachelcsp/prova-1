@@ -27,7 +27,7 @@ class MainApp extends StatelessWidget {
       routes: {
         'principal' : (context)  => PrincipalView(),
         't1' : (context)  => TelaInicial(),
-        't2' : (context)  => TelaLista(),
+        't2' : (context)  => TelaCadastro(),
       },
     );
   }

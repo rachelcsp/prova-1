@@ -172,11 +172,26 @@ class _PrincipalViewState extends State<PrincipalView> {
                 ),
               ),
 
-              //
-              //Caixa de Texto "Esqueci a senha"
+                            //
+              //Botão "Novo Cadastro"
               //
               SizedBox(
-                height: 290,
+                height: 10,
+              ),
+              TextButton(
+                onPressed: () {
+                  //
+                  // Navegar para Tela Inicial
+                  //
+                  Navigator.pushNamed(context, 't2');
+                }, child: const Text('Novo Cadastro'),
+                  ),       
+
+              //
+              //Caixa de Texto "Sobre nós"
+              //
+              SizedBox(
+                height: 248,
               ),
               TextButton(
                 onPressed: () => showDialog(

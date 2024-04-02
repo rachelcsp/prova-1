@@ -2,14 +2,14 @@
 
 import 'package:flutter/material.dart';
 
-class TelaLista extends StatefulWidget {
-  const TelaLista({super.key});
+class TelaCadastro extends StatefulWidget {
+  const TelaCadastro({super.key});
 
   @override
-  State<TelaLista> createState() => _TelaListaState();
+  State<TelaCadastro> createState() => _TelaCadastroState();
 }
 
-class _TelaListaState extends State<TelaLista> {
+class _TelaCadastroState extends State<TelaCadastro> {
   @override
   Widget build(BuildContext context) {
     return const Placeholder();
