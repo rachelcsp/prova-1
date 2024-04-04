@@ -15,6 +15,9 @@ class _TelaListaExistenteState extends State<TelaListaExistente> {
   //
   List<ListaExistente> dados = [];
 
+  var txtValor1 = TextEditingController();
+  var txtValor2 = TextEditingController();
+
   @override
   void initState() {
     dados.add(ListaExistente('Refrigerante', '1 fardo'));
@@ -44,12 +47,67 @@ class _TelaListaExistenteState extends State<TelaListaExistente> {
               child: ListTile(
                 title: Text(dados[index].item),
                 subtitle: Text(dados[index].quantidade),
+                onLongPress: (){
+                  setState(() {
+                    dados.removeAt(index);
+                  });
+                },
               ),
             );
           },
-
         ),
       ),
+     
+      floatingActionButton: FloatingActionButton(
+          onPressed: () => showDialog(
+                      context: context,
+                      builder: (BuildContext context) => AlertDialog(
+                        title: const Text('Adicionar item'),
+                        content: SizedBox(
+                          height: 150,
+                          child: Column(
+                            children: [
+                              //
+                              // CAMPO DE TEXTO
+                              //
+                              TextFormField(
+                                controller: txtValor1,
+                                style: TextStyle(fontSize: 10),
+                                decoration: InputDecoration(
+                                  labelText: 'digite o item',
+                                  border: OutlineInputBorder(),
+                                ),
+                              ),
+
+                              SizedBox(height: 10),
+
+                              TextFormField(
+                                controller: txtValor2,
+                                style: TextStyle(fontSize: 10),
+                                decoration: InputDecoration(
+                                  labelText: 'digite a quantidade',
+                                  border: OutlineInputBorder(),
+                                ),
+                              ),
+
+                              SizedBox(height: 10),
+
+                              OutlinedButton(
+                                onPressed: () {
+                                  setState(() {
+                                    dados.add(ListaExistente(txtValor1.text, txtValor2.text));
+                                  });
+                                  Navigator.pop(context, 'Sair');
+                                },
+                              child: Text('OK'),
+                              ),
+                            ],
+                          )
+                        )
+                      )  
+                  ),
+          child: Icon(Icons.add),
+        ),
     );
   }
 }
