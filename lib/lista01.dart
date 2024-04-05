@@ -20,11 +20,11 @@ class _TelaListaExistenteState extends State<TelaListaExistente> {
 
   @override
   void initState() {
-    dados.add(ListaExistente('Refrigerante', '1 fardo'));
-    dados.add(ListaExistente('Água com Gás', '1 fardo'));
-    dados.add(ListaExistente('Suco de Uva', '1 garrafa'));
-    dados.add(ListaExistente('Sabonete', '1 pacote'));
-    dados.add(ListaExistente('Shampoo', '3 unidades'));
+    dados.add(ListaExistente('Refrigerante', '1 fardo',false));
+    dados.add(ListaExistente('Água com Gás', '1 fardo',false));
+    dados.add(ListaExistente('Suco de Uva', '1 garrafa',false));
+    dados.add(ListaExistente('Sabonete', '1 pacote',false));
+    dados.add(ListaExistente('Shampoo', '3 unidades',false));
     super.initState();
   }
   
@@ -47,6 +47,15 @@ class _TelaListaExistenteState extends State<TelaListaExistente> {
               child: ListTile(
                 title: Text(dados[index].item),
                 subtitle: Text(dados[index].quantidade),
+                trailing: Switch(
+                  value: dados[index].marcado,
+                  onChanged: (value){
+                    setState(() {
+                      dados[index].marcado = value;
+                    });
+                  },
+
+                ),
                 onTap: () => showDialog(
                       context: context,
                       builder: (BuildContext context) => AlertDialog(
@@ -83,7 +92,7 @@ class _TelaListaExistenteState extends State<TelaListaExistente> {
                               OutlinedButton(
                                 onPressed: () {
                                   setState(() {
-                                    dados[index]=ListaExistente(txtValor1.text, txtValor2.text);
+                                    dados[index]=ListaExistente(txtValor1.text, txtValor2.text, dados[index].marcado);
                                     
                                   });
                                   Navigator.pop(context, 'Sair');
@@ -143,7 +152,7 @@ class _TelaListaExistenteState extends State<TelaListaExistente> {
                               OutlinedButton(
                                 onPressed: () {
                                   setState(() {
-                                    dados.add(ListaExistente(txtValor1.text, txtValor2.text));
+                                    dados.add(ListaExistente(txtValor1.text, txtValor2.text, false));
                                   });
                                   Navigator.pop(context, 'Sair');
                                 },
@@ -164,7 +173,8 @@ class ListaExistente{
   //atributos
   final String item;
   final String quantidade;
+  bool marcado;
 
   //construtor
-  ListaExistente(this.item,this.quantidade);
+  ListaExistente(this.item,this.quantidade, this.marcado);
 }
