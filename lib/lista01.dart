@@ -47,6 +47,54 @@ class _TelaListaExistenteState extends State<TelaListaExistente> {
               child: ListTile(
                 title: Text(dados[index].item),
                 subtitle: Text(dados[index].quantidade),
+                onTap: () => showDialog(
+                      context: context,
+                      builder: (BuildContext context) => AlertDialog(
+                        title: const Text('Editar item'),
+                        content: SizedBox(
+                          height: 150,
+                          child: Column(
+                            children: [
+                              //
+                              // CAMPO DE TEXTO
+                              //
+                              TextFormField(
+                                controller: txtValor1,
+                                style: TextStyle(fontSize: 10),
+                                decoration: InputDecoration(
+                                  labelText: 'digite o item',
+                                  border: OutlineInputBorder(),
+                                ),
+                              ),
+
+                              SizedBox(height: 10),
+
+                              TextFormField(
+                                controller: txtValor2,
+                                style: TextStyle(fontSize: 10),
+                                decoration: InputDecoration(
+                                  labelText: 'digite a quantidade',
+                                  border: OutlineInputBorder(),
+                                ),
+                              ),
+
+                              SizedBox(height: 10),
+
+                              OutlinedButton(
+                                onPressed: () {
+                                  setState(() {
+                                    dados[index]=ListaExistente(txtValor1.text, txtValor2.text);
+                                    
+                                  });
+                                  Navigator.pop(context, 'Sair');
+                                },
+                              child: Text('OK'),
+                              ),
+                            ],
+                          )
+                        )
+                      )  
+                  ),
                 onLongPress: (){
                   setState(() {
                     dados.removeAt(index);
