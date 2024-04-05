@@ -44,7 +44,7 @@ class _TelaCadastroState extends State<TelaCadastro> {
                 controller: txtValor1,
                 style: TextStyle(fontSize: 28),
                 decoration: InputDecoration(
-                  labelText: 'Primeiro Nome',
+                  labelText: 'Informe o nome',
                   border: OutlineInputBorder(),
                 ),
                 //
@@ -52,35 +52,9 @@ class _TelaCadastroState extends State<TelaCadastro> {
                 //
                 validator: (value) {
                   if (value == null) {
-                    return 'Informe seu Primeiro Nome';
+                    return 'Informe seu nome';
                   } else if (value.isEmpty) {
-                    return 'Informe seu Primeiro Nome';
-                  }
-                  //Retornar null significa que o campo
-                  //foi validado com sucesso!
-                  return null;
-                },
-              ),
-
-              SizedBox(height: 15),
-              //
-              // CAMPO DE TEXTO 'Sobrenome'
-              //
-              TextFormField(
-                controller: txtValor2,
-                style: TextStyle(fontSize: 28),
-                decoration: InputDecoration(
-                  labelText: 'Sobrenome',
-                  border: OutlineInputBorder(),
-                ),
-                //
-                // Validação
-                //
-                validator: (value) {
-                  if (value == null) {
-                    return 'Informe seu sobrenome';
-                  } else if (value.isEmpty) {
-                    return 'Informe seu sobrenome';
+                    return 'Informe seu nome';
                   }
                   //Retornar null significa que o campo
                   //foi validado com sucesso!
