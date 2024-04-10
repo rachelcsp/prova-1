@@ -32,7 +32,7 @@ class _TelaListaExistenteState extends State<TelaListaExistente> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Lista Mercado'),
+        title: Text('Mercado'),
       ),
       body: Padding(
         padding: EdgeInsets.all(20),

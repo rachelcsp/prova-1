@@ -166,7 +166,7 @@ class _PrincipalViewState extends State<PrincipalView> {
                     //
                     // Navegar para Tela Inicial
                     //
-                    Navigator.pushNamed(context, 't3');
+                    Navigator.pushNamed(context, 't1');
                   }
                 },
                 child: Text(
