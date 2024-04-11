@@ -165,6 +165,14 @@ class _TelaListaExistenteState extends State<TelaListaExistente> {
                   ),
           child: Icon(Icons.add),
         ),
+        
+        persistentFooterButtons: [
+        TextFormField(
+          decoration: InputDecoration(
+            labelText: 'Pesquisar',
+          ),
+        ),
+        ],
     );
   }
 }

@@ -13,19 +13,19 @@ class _TelaInicialState extends State<TelaInicial> {
   //
   // Lista Dinâmica de objetos da classe TelaInicial
   //
-  List<TelaInicial> dados = [];
+  List<Inicial> dados = [];
 
   var txtValor1 = TextEditingController();
 
   @override
   void initState() {
-    dados.add(TelaInicial('Mercado'));
-    dados.add(TelaInicial('Farmácia'));
-    dados.add(TelaInicial('Pet Shop'));
-    dados.add(TelaInicial('Outros'));
+    dados.add(Inicial('Mercado'));
+    dados.add(Inicial('Farmácia'));
+    dados.add(Inicial('Pet Shop'));
+    dados.add(Inicial('Outros'));
     super.initState();
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,55 +35,19 @@ class _TelaInicialState extends State<TelaInicial> {
       body: Padding(
         padding: EdgeInsets.all(20),
         child: ListView.builder(
-
           //Quantidade de itens
           itemCount: dados.length,
 
           //Aparência de cada item
-          itemBuilder: (context,index){
+          itemBuilder: (context, index) {
             return Card(
               child: ListTile(
                 title: Text(dados[index].nome),
                 subtitle: null,
-    
-                onTap: () => showDialog(
-                      context: context,
-                      builder: (BuildContext context) => AlertDialog(
-                        title: const Text('Alterar Nome'),
-                        content: SizedBox(
-                          height: 150,
-                          child: Column(
-                            children: [
-                              //
-                              // CAMPO DE TEXTO
-                              //
-                              TextFormField(
-                                controller: txtValor1,
-                                style: TextStyle(fontSize: 10),
-                                decoration: InputDecoration(
-                                  labelText: 'digite novo nome',
-                                  border: OutlineInputBorder(),
-                                ),
-                              ),
-
-                              SizedBox(height: 10),
-
-                              OutlinedButton(
-                                onPressed: () {
-                                  setState(() {
-                                    dados[index]=TelaInicial(txtValor1.text);
-                                    
-                                  });
-                                  Navigator.pop(context, 'Sair');
-                                },
-                              child: Text('OK'),
-                              ),
-                            ],
-                          )
-                        )
-                      )  
-                  ),
-                onLongPress: (){
+                onTap: () {
+                  Navigator.pushNamed(context, 't3');
+                },
+                onLongPress: () {
                   setState(() {
                     dados.removeAt(index);
                   });
@@ -93,54 +57,50 @@ class _TelaInicialState extends State<TelaInicial> {
           },
         ),
       ),
-
       floatingActionButton: FloatingActionButton(
-          onPressed: () => showDialog(
-                      context: context,
-                      builder: (BuildContext context) => AlertDialog(
-                        title: const Text('Adicionar Lista'),
-                        content: SizedBox(
-                          height: 150,
-                          child: Column(
-                            children: [
-                              //
-                              // CAMPO DE TEXTO
-                              //
-                              TextFormField(
-                                controller: txtValor1,
-                                style: TextStyle(fontSize: 10),
-                                decoration: InputDecoration(
-                                  labelText: 'digite o nome',
-                                  border: OutlineInputBorder(),
-                                ),
-                              ),
+        onPressed: () => showDialog(
+            context: context,
+            builder: (BuildContext context) => AlertDialog(
+                title: const Text('Adicionar Lista'),
+                content: SizedBox(
+                    height: 150,
+                    child: Column(
+                      children: [
+                        //
+                        // CAMPO DE TEXTO
+                        //
+                        TextFormField(
+                          controller: txtValor1,
+                          style: TextStyle(fontSize: 10),
+                          decoration: InputDecoration(
+                            labelText: 'digite o nome',
+                            border: OutlineInputBorder(),
+                          ),
+                        ),
 
-                              SizedBox(height: 10),
+                        SizedBox(height: 10),
 
-                              OutlinedButton(
-                                onPressed: () {
-                                  setState(() {
-                                    dados.add(TelaInicial(txtValor1.text));
-                                  });
-                                  Navigator.pop(context, 'Sair');
-                                },
-                              child: Text('OK'),
-                              ),
-                            ],
-                          )
-                        )
-                      )  
-                  ),
-          child: Icon(Icons.add),
-        ),
+                        OutlinedButton(
+                          onPressed: () {
+                            setState(() {
+                              dados.add(Inicial(txtValor1.text));
+                            });
+                            Navigator.pop(context, 'Sair');
+                          },
+                          child: Text('OK'),
+                        ),
+                      ],
+                    )))),
+        child: Icon(Icons.add),
+      ),
     );
   }
 }
 
-class TelaInicial{
+class Inicial {
   //atributos
   final String nome;
 
   //construtor
-  TelaInicial(this.nome);
+  Inicial(this.nome);
 }
