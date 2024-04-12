@@ -201,7 +201,7 @@ class _PrincipalViewState extends State<PrincipalView> {
                   context: context,
                   builder: (BuildContext context) => AlertDialog(
                     title: const Text('Sobre nós'),
-                    content: const Text('Nós....'),
+                    content: const Text('Nós tentamos e demos nosso melhor, não é perfeito mas é honesto!'),
                     actions: [
                       TextButton(
                         onPressed: () => Navigator.pop(context, 'Sair'),

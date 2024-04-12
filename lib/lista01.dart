@@ -167,9 +167,14 @@ class _TelaListaExistenteState extends State<TelaListaExistente> {
         ),
         
         persistentFooterButtons: [
-        TextFormField(
-          decoration: InputDecoration(
-            labelText: 'Pesquisar',
+        Expanded(
+          child: TextFormField(
+            controller: txtValor1,
+            style: TextStyle(fontSize: 10),
+            decoration: InputDecoration(
+              labelText: 'Pesquisar',
+            ),
+            onChanged: ,
           ),
         ),
         ],
