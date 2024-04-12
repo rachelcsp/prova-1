@@ -13,21 +13,24 @@ class _TelaListaExistenteState extends State<TelaListaExistente> {
   //
   // Lista Dinâmica de objetos da classe ListaExistente
   //
-  List<ListaExistente> dados = [];
+  List<Item> lista1 = [];
+  List<Item> lista2 = [];
 
   var txtValor1 = TextEditingController();
   var txtValor2 = TextEditingController();
+  var txtPesquisar = TextEditingController();
 
   @override
   void initState() {
-    dados.add(ListaExistente('Refrigerante', '1 fardo',false));
-    dados.add(ListaExistente('Água com Gás', '1 fardo',false));
-    dados.add(ListaExistente('Suco de Uva', '1 garrafa',false));
-    dados.add(ListaExistente('Sabonete', '1 pacote',false));
-    dados.add(ListaExistente('Shampoo', '3 unidades',false));
+    lista1.add(Item('Refrigerante', '1 fardo', false));
+    lista1.add(Item('Água com Gás', '1 fardo', false));
+    lista1.add(Item('Suco de Uva', '1 garrafa', false));
+    lista1.add(Item('Sabonete', '1 pacote', false));
+    lista1.add(Item('Shampoo', '3 unidades', false));
+    lista2.addAll(lista1);
     super.initState();
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,76 +40,81 @@ class _TelaListaExistenteState extends State<TelaListaExistente> {
       body: Padding(
         padding: EdgeInsets.all(20),
         child: ListView.builder(
-
           //Quantidade de itens
-          itemCount: dados.length,
+          itemCount: lista1.length,
 
           //Aparência de cada item
-          itemBuilder: (context,index){
+          itemBuilder: (context, index) {
             return Card(
               child: ListTile(
-                title: Text(dados[index].item),
-                subtitle: Text(dados[index].quantidade),
+                title: Text(lista1[index].nome),
+                subtitle: Text(lista1[index].quantidade),
                 trailing: Switch(
-                  value: dados[index].marcado,
-                  onChanged: (value){
+                  value: lista1[index].marcado,
+                  onChanged: (value) {
                     setState(() {
-                      dados[index].marcado = value;
+                      lista1[index].marcado = value;
+                      lista2[index].marcado = value;
                     });
                   },
-
                 ),
                 onTap: () => showDialog(
-                      context: context,
-                      builder: (BuildContext context) => AlertDialog(
+                    context: context,
+                    builder: (BuildContext context) => AlertDialog(
                         title: const Text('Editar item'),
                         content: SizedBox(
-                          height: 150,
-                          child: Column(
-                            children: [
-                              //
-                              // CAMPO DE TEXTO
-                              //
-                              TextFormField(
-                                controller: txtValor1,
-                                style: TextStyle(fontSize: 10),
-                                decoration: InputDecoration(
-                                  labelText: 'digite o item',
-                                  border: OutlineInputBorder(),
+                            height: 150,
+                            child: Column(
+                              children: [
+                                //
+                                // CAMPO DE TEXTO
+                                //
+                                TextFormField(
+                                  controller: txtValor1,
+                                  style: TextStyle(fontSize: 10),
+                                  decoration: InputDecoration(
+                                    labelText: 'digite o item',
+                                    border: OutlineInputBorder(),
+                                  ),
                                 ),
-                              ),
 
-                              SizedBox(height: 10),
+                                SizedBox(height: 10),
 
-                              TextFormField(
-                                controller: txtValor2,
-                                style: TextStyle(fontSize: 10),
-                                decoration: InputDecoration(
-                                  labelText: 'digite a quantidade',
-                                  border: OutlineInputBorder(),
+                                TextFormField(
+                                  controller: txtValor2,
+                                  style: TextStyle(fontSize: 10),
+                                  decoration: InputDecoration(
+                                    labelText: 'digite a quantidade',
+                                    border: OutlineInputBorder(),
+                                  ),
                                 ),
-                              ),
 
-                              SizedBox(height: 10),
+                                SizedBox(height: 10),
 
-                              OutlinedButton(
-                                onPressed: () {
-                                  setState(() {
-                                    dados[index]=ListaExistente(txtValor1.text, txtValor2.text, dados[index].marcado);
-                                    
-                                  });
-                                  Navigator.pop(context, 'Sair');
-                                },
-                              child: Text('OK'),
-                              ),
-                            ],
-                          )
-                        )
-                      )  
-                  ),
-                onLongPress: (){
+                                OutlinedButton(
+                                  onPressed: () {
+                                    setState(() {
+                                      lista1[index] = Item(
+                                        txtValor1.text,
+                                        txtValor2.text,
+                                        lista1[index].marcado,
+                                      );
+                                      lista2[index] = Item(
+                                        txtValor1.text,
+                                        txtValor2.text,
+                                        lista1[index].marcado,
+                                      );
+                                    });
+                                    Navigator.pop(context, 'Sair');
+                                  },
+                                  child: Text('OK'),
+                                ),
+                              ],
+                            )))),
+                onLongPress: () {
                   setState(() {
-                    dados.removeAt(index);
+                    lista1.removeAt(index);
+                    lista2.removeAt(index);
                   });
                 },
               ),
@@ -114,80 +122,99 @@ class _TelaListaExistenteState extends State<TelaListaExistente> {
           },
         ),
       ),
-
       floatingActionButton: FloatingActionButton(
-          onPressed: () => showDialog(
-                      context: context,
-                      builder: (BuildContext context) => AlertDialog(
-                        title: const Text('Adicionar item'),
-                        content: SizedBox(
-                          height: 150,
-                          child: Column(
-                            children: [
-                              //
-                              // CAMPO DE TEXTO
-                              //
-                              TextFormField(
-                                controller: txtValor1,
-                                style: TextStyle(fontSize: 10),
-                                decoration: InputDecoration(
-                                  labelText: 'digite o item',
-                                  border: OutlineInputBorder(),
-                                ),
-                              ),
-
-                              SizedBox(height: 10),
-
-                              TextFormField(
-                                controller: txtValor2,
-                                style: TextStyle(fontSize: 10),
-                                decoration: InputDecoration(
-                                  labelText: 'digite a quantidade',
-                                  border: OutlineInputBorder(),
-                                ),
-                              ),
-
-                              SizedBox(height: 10),
-
-                              OutlinedButton(
-                                onPressed: () {
-                                  setState(() {
-                                    dados.add(ListaExistente(txtValor1.text, txtValor2.text, false));
-                                  });
-                                  Navigator.pop(context, 'Sair');
-                                },
-                              child: Text('OK'),
-                              ),
-                            ],
-                          )
-                        )
-                      )  
+        onPressed: () => showDialog(
+          context: context,
+          builder: (BuildContext context) => AlertDialog(
+            title: const Text('Adicionar item'),
+            content: SizedBox(
+              height: 150,
+              child: Column(
+                children: [
+                  //
+                  // CAMPO DE TEXTO
+                  //
+                  TextFormField(
+                    controller: txtValor1,
+                    style: TextStyle(fontSize: 10),
+                    decoration: InputDecoration(
+                      labelText: 'digite o item',
+                      border: OutlineInputBorder(),
+                    ),
                   ),
-          child: Icon(Icons.add),
+
+                  SizedBox(height: 10),
+
+                  TextFormField(
+                    controller: txtValor2,
+                    style: TextStyle(fontSize: 10),
+                    decoration: InputDecoration(
+                      labelText: 'digite a quantidade',
+                      border: OutlineInputBorder(),
+                    ),
+                  ),
+
+                  SizedBox(height: 10),
+
+                  OutlinedButton(
+                    onPressed: () {
+                      setState(() {
+                        lista1.add(
+                          Item(txtValor1.text, txtValor2.text, false),
+                        );
+                        lista2.add(
+                          Item(txtValor1.text, txtValor2.text, false),
+                        );
+                      });
+                      Navigator.pop(context, 'Sair');
+                    },
+                    child: Text('OK'),
+                  ),
+                ],
+              ),
+            ),
+          ),
         ),
-        
-        persistentFooterButtons: [
-        Expanded(
+        child: Icon(Icons.add),
+      ),
+      persistentFooterButtons: [
+        Padding(
+          padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
           child: TextFormField(
-            controller: txtValor1,
+            controller: txtPesquisar,
             style: TextStyle(fontSize: 10),
             decoration: InputDecoration(
               labelText: 'Pesquisar',
             ),
-            onChanged: ,
+            onChanged: (value) {
+              setState(() {
+                if (value.isNotEmpty) {
+                  lista1.clear();
+                  for (Item item in lista2) {
+                    if (item.nome.toLowerCase().contains(value.toLowerCase())) {
+                      lista1.add(item);
+                    }
+                  }
+                } else {
+                  lista1.clear();
+                  lista1.addAll(lista2);
+                }
+                print(value);
+              });
+            },
           ),
         ),
-        ],
+      ],
     );
   }
 }
 
-class ListaExistente{
+class Item {
   //atributos
-  final String item;
+  final String nome;
   final String quantidade;
   bool marcado;
 
   //construtor
-  ListaExistente(this.item,this.quantidade, this.marcado);
+  Item(this.nome, this.quantidade, this.marcado);
 }
