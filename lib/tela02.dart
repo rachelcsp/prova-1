@@ -113,32 +113,7 @@ class _TelaCadastroState extends State<TelaCadastro> {
                 },
               ),
 
-              SizedBox(height: 15),
-              //
-              // CAMPO DE TEXTO ' repita a senha'
-              //
-              TextFormField(
-                controller: txtValor5,
-                style: TextStyle(fontSize: 28),
-                decoration: InputDecoration(
-                  labelText: 'Repita a senha',
-                  border: OutlineInputBorder(),
-                ),
-                //
-                // Validação
-                //
-                validator: (value) {
-                  if (value == null) {
-                    return 'Repita a senha';
-                  } else if (value.isEmpty) {
-                    return 'Repita a senha';
-                  }
-                  //Retornar null significa que o campo
-                  //foi validado com sucesso!
-                  return null;
-                },
-              ),
-
+              
               //
               // BOTÃO
               //

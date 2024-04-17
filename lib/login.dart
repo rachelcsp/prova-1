@@ -35,12 +35,23 @@ class _PrincipalViewState extends State<PrincipalView> {
           child: SingleChildScrollView(
             child: Column(
               children: [
+
+              //
+              // IMAGEM
+              // 
+              Image.asset(
+                'lib/imagens/1310969.jpg',
+                width: 100,
+                height: 100,
+              ),
+
+              SizedBox(height: 20),
                 //
                 // CAMPO DE TEXTO
                 //
                 TextFormField(
                   controller: txtValor1,
-                  style: TextStyle(fontSize: 32),
+                  style: TextStyle(fontSize: 25),
                   decoration: InputDecoration(
                     labelText: 'login',
                     border: OutlineInputBorder(),
@@ -60,11 +71,11 @@ class _PrincipalViewState extends State<PrincipalView> {
                   },
                 ),
             
-                SizedBox(height: 30),
+                SizedBox(height: 20),
             
                 TextFormField(
                   controller: txtValor2,
-                  style: TextStyle(fontSize: 32),
+                  style: TextStyle(fontSize: 25),
                   decoration: InputDecoration(
                     labelText: 'senha',
                     border: OutlineInputBorder(),
@@ -151,7 +162,7 @@ class _PrincipalViewState extends State<PrincipalView> {
                 //
                 //ElevatedButton, OutlinedButton, TextButton
                 SizedBox(
-                  height: 50,
+                  height: 35,
                 ),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
@@ -195,7 +206,7 @@ class _PrincipalViewState extends State<PrincipalView> {
                 //Caixa de Texto "Sobre nós"
                 //
                 SizedBox(
-                  height: 150,
+                  height: 90,
                 ),
                 TextButton(
                   onPressed: () => showDialog(
